@@ -14,6 +14,10 @@ This small Laravel/Livewire App allows to manage users and departmetns.
 
 To run the tests against a memory database, execute the command `php artisan test`;
 
+## Running
+
+To run the App on development, execute the command `php artisan serve` to start the development server and `npm run dev` to start Vite. The app will start on the port **8000** by default.
+
 ## App structure
 
 The app has two sections, departments and users.
