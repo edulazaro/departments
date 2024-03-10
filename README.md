@@ -1,5 +1,5 @@
 
-This small Laravel/Livewire App allows to manage users and departmetns.
+This small Laravel/Livewire App allows to manage users and departments.
 
 ## How to install
 
@@ -24,9 +24,17 @@ The app has two sections, departments and users.
 
 ### Departments
 
-This view shows a table with all the departments. The name is used as a search field.
+This view shows a table with all the departments. The `name` field is used as a search field.
 
-* **Creating user**: Click the `Add New` button to open the new user modal. Enter a name name and the email.
+* **Creating department**: Click the `Add New` button to open the new user modal. Enter a demartment name and optionally select the parent department.
+* **Deleting a department**: Click the dropdown on the right of any department and then click the `Delete` button. If the department has child departments, they will be detached when deleted via the `deleting` event.
+* **Editing a department**: Click the dropdown on the right of any department and then click the `Edit` button. You can update the name and the parent department here, and also remove child departments, if any.
+
+### Users
+
+This view shows a table with all the users. The `search_text` field is used as a search field.
+
+* **Creating user**: Click the `Add New` button to open the new user modal. Enter a name and the email of the user.
 * **Deleting a user**: Click the dropdown on the right of any user and then click the `Delete` button. If the user was assigned to any department, the relation will be removed.
 * **Editing a user**: Click the dropdown on the right of any user and then click the `Edit` button. You can update the name and the email of the user here.
 * **Adding a user to a department**: Click the dropdown on the right of any user and then click the `Departments` button. You can select and add a department to the user here.
@@ -42,4 +50,4 @@ The number of users and departments might grow. Here are some improvements:
 
 ## License
 
-This project and Laravel framework are open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
