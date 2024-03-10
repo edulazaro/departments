@@ -28,6 +28,14 @@ This view shows a table with all the departments. The name is used as a search f
 * **Adding a user to a department**: Click the dropdown on the right of any user and then click the `Departments` button. You can select and add a department to the user here.
 * **Removing a user from a department**: Click the dropdown on the right of any user and then click the `Departments` button. You will see the list of departments here. Click the `Remove` button to remove the user from the desired department.
 
+## Possible improvements
+
+The number of users and departments might grow. Here are some improvements:
+
+* When selecting a user or a department, a dynamic select with a search field can be added. Here is a personal project where I do this when selecting developers or editors when [adding games](https://duracionde.com/juegos/create).
+
+* If the number of users goes beyond 100k, a full text index will be better suited so MySQL does not decide to skip indexes on paginated results. On the same project there's [another example](https://duracionde.com/juegos) where I do it. Another [example here](https://horseandcountry.tv/search) when searching on millions of records.
+
 ## License
 
 This project and Laravel framework are open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
