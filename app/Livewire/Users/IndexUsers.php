@@ -10,22 +10,30 @@ class IndexUsers extends Component
 {
     public $users;
 
-    public $page = 1;
-    public $perPage = 10;
-    public $searchText = null;
-    public $moreRecords = true;
+    public int $page = 1;
+    public int $perPage = 10;
+    public string|null $searchText = null;
+    public bool $moreRecords = true;
 
     protected $listeners = [
         'addedUser' => 'getUsers',
         'editedUser' => 'getUsers'
     ];
 
+    /**
+     * Retrieve users based on search criteria.
+     *
+     * Retrieves users from the database based on the current search text
+     * and sets the users collection accordingly.
+     *
+     * @return void
+     */
     public function getUsers()
     {
         $this->moreRecords = true;
 
         $usersQuery = User::query();
-        
+
         if ($this->searchText) {
             $usersQuery->searchText($this->searchText);
         }
@@ -38,22 +46,52 @@ class IndexUsers extends Component
         }
     }
 
+    /**
+     * Perform initial setup when the Livewire component is mounted.
+     *
+     * Retrieves the initial list of users from the database.
+     *
+     * @return void
+     */
     public function mount()
     {
         $this->getUsers();
     }
 
+    /**
+     * Handle updates to the search text.
+     *
+     * Updates the users list when the search text is updated.
+     *
+     * @return void
+     */
     public function updatedSearchText()
     {
         $this->getUsers();
     }
 
+    /**
+     * Delete a user.
+     *
+     * Deletes the specified user from the database and refreshes the users list.
+     *
+     * @param  \App\Models\User  $user The user to delete
+     * @return void
+     */
     public function deleteUser(User $user)
     {
         $user->delete();
         $this->getUsers();
     }
 
+    /**
+     * Load more users and append them to the existing collection.
+     *
+     * This method increases the page number, retrieves additional users based on the current page
+     * and search criteria, and appends them to the existing users collection.
+     *
+     * @return void
+     */
     public function loadMore()
     {
         $this->page += 1;
@@ -76,6 +114,11 @@ class IndexUsers extends Component
         }
     }
 
+    /**
+     * Render the Livewire component.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('livewire.users.index-users');

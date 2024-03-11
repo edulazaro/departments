@@ -8,15 +8,20 @@ use App\Models\User;
 
 class EditUser extends Component
 {
-    public $name;
-    public $email;
+    public string $name;
+    public string $email;
 
-    public $user;
+    public User|null $user;
 
     protected $listeners = [
         'editUser' => 'editUser',
     ];
 
+    /**
+     * Define the validation rules for the Livewire component.
+     *
+     * @return array
+     */
     protected function rules()
     {
         return [
@@ -25,11 +30,28 @@ class EditUser extends Component
         ];
     }
 
+    /**
+     * Perform initial setup when the Livewire component is mounted.
+     *
+     * Initializes the Livewire component's state with the provided user, if any.
+     *
+     * @param  \App\Models\User|null  $user The user to initialize
+     * @return void
+     */
     public function mount($user = null)
     {
         $this->user = $user;
     }
 
+    /**
+     * Edit a user.
+     *
+     * Sets the current user for editing, initializes form fields with user data,
+     * and triggers the opening of the modal for editing.
+     *
+     * @param  \App\Models\User  $user The user to edit
+     * @return void
+     */
     public function editUser(User $user)
     {
         $this->user = $user;
@@ -40,6 +62,11 @@ class EditUser extends Component
         $this->dispatch('open-modal');
     }
 
+    /**
+     * Process form submission to edit a user.
+     *
+     * @return void
+     */
     public function submit()
     {
         $this->validate();
@@ -52,12 +79,13 @@ class EditUser extends Component
         $this->dispatch('editedUser');
     }
 
+    /**
+     * Render the Livewire component.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function render()
     {
-        if (!$this->user) {
-            $this->skipRender();
-        }
-
         return view('livewire.users.edit-user');
     }
 }

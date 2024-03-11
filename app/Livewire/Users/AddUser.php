@@ -9,9 +9,14 @@ use App\Models\User;
 
 class AddUser extends Component
 {
-    public $name;
-    public $email;
+    public string $name;
+    public string $email;
 
+    /**
+     * Define the validation rules for the Livewire component.
+     *
+     * @return array
+     */
     protected function rules()
     {
         return [
@@ -20,6 +25,11 @@ class AddUser extends Component
         ];
     }
 
+    /**
+     * Process form submission to create a new user.
+     *
+     * @return void
+     */
     public function submit()
     {
         $this->validate();
@@ -31,10 +41,18 @@ class AddUser extends Component
         $user->role = 'user';
         $user->save();
 
+        $this->name = '';
+        $this->email = '';
+
         $this->dispatch('close-modal');
         $this->dispatch('addedUser');
     }
 
+    /**
+     * Render the Livewire component.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('livewire.users.add-user');
