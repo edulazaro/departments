@@ -6,9 +6,11 @@ This small Laravel/Livewire App allows to manage users and departments.
 1. Clone the repository.
 2. Execute `composer install` to install the PHP dependencies.
 3. Execute `npm install` to install JavaScript dependencies.
-3. Run the migrations with the command `php artisan migrate`.
-4. To start with some data, execute the command `php artisan db:seed`
-5. You can now access the app with the email `test@test.com` and the password `testpass`.
+4. Copy the `.env.example` file, rename it as `.env` and add the database configuration values.
+5. Run the migrations with the command `php artisan migrate`.
+6. To start with some data, execute the command `php artisan db:seed`
+
+You can now access the app with the email `test@test.com` and the password `testpass`.
 
 ## Testing
 
